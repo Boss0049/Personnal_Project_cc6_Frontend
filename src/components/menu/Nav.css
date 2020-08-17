@@ -1,0 +1,10 @@
+.logo {
+    width: 120px;
+    height: 31px;
+    background-image: url("./ba28f8bd-b160-40f1-81b2-0e2d16fb07b3_200x200.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 16px 24px 16px 0;
+    float: left;
+}
