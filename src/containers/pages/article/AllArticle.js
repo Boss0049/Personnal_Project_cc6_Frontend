@@ -13,9 +13,8 @@ function AllArticle() {
   const [statusCategory, setStatusCategory] = useState("Technology");
   const { dataArticle, setDataArticle } = useContext(PostContext);
 
-  const fetchData = async () => {
-    if (saveData.has(statusCategory)) {
-      console.log("saveData.get(statusCategory))");
+  const fetchData = async ({ force = false }) => {
+    if (!force && saveData.has(statusCategory)) {
       setDataArticle(
         saveData.get(statusCategory).data?.message[0]?.Articles || []
       );
@@ -27,7 +26,7 @@ function AllArticle() {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData({ force: true });
     // saveData.set("statusCategory", "data");
   }, [statusCategory]);
 
@@ -49,7 +48,7 @@ function AllArticle() {
   useEffect(() => {
     async function fetchData() {
       const popular = await axios.get("/article/popular");
-      setDataPopular(popular.data);
+      setDataPopular((preDataProp) => popular.data);
     }
     fetchData();
   }, []);
